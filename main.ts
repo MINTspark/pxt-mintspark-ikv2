@@ -1,4 +1,6 @@
 //% weight=100 color=#DC22E1 block="MINTspark Inventor V2" blockId="MINTspark Inventor V2" icon="\uf0e7"
+//% subcategories='["Motor / Servo", "Robot Tank Drive", "Sensor / Input", "Light / Display"]'
+//% groups='["Motor Functions", "Servo Functions", "Information", "Setup", "Movement", "Movement MPU6050", "Sensor", "Input", "Light", "Display"]'
 namespace ms_nezhaV2 {
     /*
      * PlanetX Sensors
