@@ -1,5 +1,5 @@
 //% weight=100 color=#DC22E1 block="MINTspark Inventor V2" blockId="MINTspark Inventor V2" icon="\uf0e7"
-//% subcategories='["Motor / Servo", "Robot Tank Drive", "Sensor / Input", "Light / Display"]'
+//% subcategories='["Motor / Servo", "Robot Tank Drive", "Sensor / Input", "Light / Display", "IOT"]'
 //% groups='["Motor Functions", "Servo Functions", "Information", "Setup", "Movement", "Movement MPU6050", "Sensor", "Input", "Light", "Display"]'
 namespace ms_nezhaV2 {
     /*
@@ -230,5 +230,44 @@ namespace ms_nezhaV2 {
     //% block="clear display" color=#00B1ED
     export function oledClear() {
         PlanetX_Display.oledClear();
+    }
+
+    // IOT  
+    /**
+    * Initialize wifi module
+    */
+    //% subcategory="IOT"
+    //% group="Setup"
+    //% block="Set wifi module %Rjpin Baud rate %baudrate"
+    //% color=#EA5532
+    //% weight=100
+    export function initWIFI(Rjpin: PlanetX_IOT.DigitalRJPin, baudrate: BaudRate) : void {
+        PlanetX_IOT.initWIFI(Rjpin, baudrate);
+    }
+
+    /**
+    * connect to Wifi router
+    */
+    //% block="Connect Wifi SSID = %ssid|KEY = %pw"
+    //% ssid.defl=your_ssid
+    //% pw.defl=your_pw
+    //% subcategory="IOT"
+    //% group="Setup"
+    //% color=#EA5532
+    //% weight=95
+    export function connectWifi(ssid: string, pw: string) : void {
+        PlanetX_IOT.connectWifi(ssid, pw);
+    }
+    /**
+    * Check if ESP8266 successfully connected to Wifi
+    */
+    //% block="Wifi connected %State"
+    //% color=#EA5532
+    //% subcategory="IOT"
+    //% group="Setup"
+    //% color=#EA5532
+    //% weight=90
+    export function wifiState(state: boolean): boolean{
+        return PlanetX_IOT.wifiState(state);
     }
 }
