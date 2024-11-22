@@ -91,16 +91,16 @@ namespace ms_nezhaV2 {
     //% weight=78
     //% subcategory="Sensor / Input"
     //% group="Sensor"
-    //% block="Ultrasonic Sensor %Rjpin triggered"
+    //% block="Ultrasonic Sensor %Rjpin triggered distance %triggerDistance %distanceUnit"
     //% Rjpin.fieldEditor="gridpicker"
     //% Rjpin.fieldOptions.columns=2
-    export function onUltrasonicSensorTriggered(Rjpin: PlanetX_Display.DigitalRJPin, handler: () => void) {
+    export function onUltrasonicSensorTriggered(Rjpin: PlanetX_Display.DigitalRJPin, triggerDistance: number, distanceUnit: PlanetX_Basic.Distance_Unit_List, handler: () => void) {
         control.onEvent(ultrasonicSensorEventId, 0, handler);
         control.inBackground(() => {
             let lastState = false;
             while (true) {
-                let distance = PlanetX_Basic.ultrasoundSensor(Rjpin, PlanetX_Basic.Distance_Unit_List.Distance_Unit_cm);
-                let detected = distance > 0 && distance < 6;
+                let distance = PlanetX_Basic.ultrasoundSensor(Rjpin, distanceUnit);
+                let detected = distance > 0 && distance <= triggerDistance;
 
                 if (detected && !lastState) {
                     control.raiseEvent(ultrasonicSensorEventId, 0);
