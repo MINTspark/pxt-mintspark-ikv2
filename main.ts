@@ -95,6 +95,7 @@ namespace ms_nezhaV2 {
     //% Rjpin.fieldEditor="gridpicker"
     //% Rjpin.fieldOptions.columns=2
     //% triggerDistance.defl=10
+    //% color=#EA5532
     export function onUltrasonicSensorTriggered(Rjpin: PlanetX_Display.DigitalRJPin, triggerDistance: number, distanceUnit: PlanetX_Basic.Distance_Unit_List, handler: () => void) {
         control.onEvent(ultrasonicSensorEventId, 0, handler);
         control.inBackground(() => {
@@ -166,6 +167,28 @@ namespace ms_nezhaV2 {
         })
     }
 
+    //% weight=40
+    //% subcategory="Sensor / Input"
+    //% group="Sensor"
+    //% block="UV sensor %Rjpin level(0~15)"
+    //% Rjpin.fieldEditor="gridpicker"
+    //% Rjpin.fieldOptions.columns=2
+    //% color=#ffcc66
+    export function UVLevel(Rjpin: PlanetX_Basic.AnalogRJPin): number {
+        return PlanetX_Basic.UVLevel(Rjpin);
+    }
+
+    //% weight=35
+    //% subcategory="Sensor / Input"
+    //% group="Sensor"
+    //% block="DHT11 sensor %Rjpin %dht11state value"
+    //% Rjpin.fieldEditor="gridpicker" dht11state.fieldEditor="gridpicker"
+    //% Rjpin.fieldOptions.columns=2 dht11state.fieldOptions.columns=1
+    //% color=#EA5532
+    export function dht11Sensor(Rjpin: PlanetX_Basic.DigitalRJPin, dht11state: PlanetX_Basic.DHT11_state): number {
+        return PlanetX_Basic.dht11Sensor(Rjpin, dht11state);
+    }
+    
     /*
      * PlanetX Output
      */
