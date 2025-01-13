@@ -6,7 +6,7 @@
         "core": "*",
         "radio": "*",
         "microphone": "*",
-        "pxt-mintspark-nezhav2-mpu6050": "github:mintspark/pxt-mintspark-nezhav2-mpu6050#v1.5.0",
+        "pxt-mintspark-nezhav2-mpu6050": "github:mintspark/pxt-mintspark-nezhav2-mpu6050#v1.5.1",
         "pxt-PlanetX": "github:elecfreaks/pxt-planetx#v1.5.27"
     },
     "files": [
@@ -18,7 +18,7 @@
         "test.ts"
     ],
     "targetVersions": {
-        "target": "7.0.51",
+        "target": "7.0.57",
         "targetId": "microbit"
     },
     "supportedTargets": [
