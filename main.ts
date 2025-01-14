@@ -232,6 +232,17 @@ namespace ms_nezhaV2 {
         PlanetX_Display.oledClear();
     }
 
+    // Tank Drive
+
+    //% subcategory="Robot Tank Drive"
+    //% group="Line Sensor"
+    //% speed.min=1 speed.max=100 line.defl=30
+    //% block="Follow line speed %speed sensor %Rjpin"
+    //% color=#00B1ED
+    export function tankDriveFollowLine(speed: number, Rjpin: PlanetX_Basic.DigitalRJPin) {
+        
+    }
+
     // IOT  
     /**
     * Initialize wifi module
