@@ -237,7 +237,7 @@ namespace ms_nezhaV2 {
     //% subcategory="Robot Tank Drive"
     //% group="Line Sensor"
     //% speed.min=1 speed.max=100 line.defl=30
-    //% block="Follow line speed %speed sensor %Rjpin"
+    //% block="Follow line with speed %speed sensor %Rjpin"
     //% color=#00B1ED
     export function tankDriveFollowLine(speed: number, Rjpin: PlanetX_Basic.DigitalRJPin) {
         

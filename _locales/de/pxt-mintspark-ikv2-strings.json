@@ -13,7 +13,7 @@
     "ms_nezhaV2.oledShowText|block": "Display: Zeige Text %text auf Zeile %line",
     "ms_nezhaV2.oledShowNumber|block": "Display: Zeige Nummer %n auf Zeile %line",
     "ms_nezhaV2.oledClear|block": "Display löschen",
-    "ms_nezhaV2.tankDriveFollowLine|block": "Linie folgen Geschwindigkeit %speed Sensor %Rjpin",
+    "ms_nezhaV2.tankDriveFollowLine|block": "Linie folgen mit Geschwindigkeit %speed Sensor %Rjpin",
     "{id:subcategory}Sensor / Input": "Sensor / Eingabe",
     "{id:subcategory}Light / Display": "Licht / Display",
     "{id:group}Output": "Ausgabe",
