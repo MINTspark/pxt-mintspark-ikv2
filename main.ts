@@ -241,22 +241,31 @@ namespace ms_nezhaV2 {
     //% color=#00B1ED
     export function tankDriveFollowLine(speed: number, Rjpin: PlanetX_Basic.DigitalRJPin) {
         robotTankModeMovementChange = false;
-        ms_nezhaV2.driveTankDualSpeedForSeconds(speed, speed)
-        while (true) {
-            if (ms_nezhaV2.trackingSensor(Rjpin, PlanetX_Basic.TrackingStateType.Tracking_State_0)) {
-                ms_nezhaV2.runMotor(tankMotorLeft, speed);
-                ms_nezhaV2.runMotor(tankMotorRight, speed);
-            } else if (ms_nezhaV2.trackingSensor(Rjpin, PlanetX_Basic.TrackingStateType.Tracking_State_2)) {
-                ms_nezhaV2.runMotor(tankMotorLeft, speed);
-                ms_nezhaV2.runMotor(tankMotorRight, 0);
-            } else if (ms_nezhaV2.trackingSensor(Rjpin, PlanetX_Basic.TrackingStateType.Tracking_State_1)) {
-                ms_nezhaV2.runMotor(tankMotorLeft, 0);
-                ms_nezhaV2.runMotor(tankMotorRight, speed);
-            } else if (robotTankModeMovementChange) {
-                break;
+        speed = Math.abs(speed);
+        let tmLSpeed = tankMotorLeftReversed ? -speed : speed;
+        let tmRSpeed = tankMotorRightReversed ? -speed : speed;
+
+        // Drive with PID Control
+        control.inBackground(() => {
+            ms_nezhaV2.runMotor(tankMotorLeft, tmLSpeed);
+            ms_nezhaV2.runMotor(tankMotorRight, tmRSpeed);
+
+            while (true) {
+                if (ms_nezhaV2.trackingSensor(Rjpin, PlanetX_Basic.TrackingStateType.Tracking_State_0)) {
+                    ms_nezhaV2.runMotor(tankMotorLeft, tmLSpeed);
+                    ms_nezhaV2.runMotor(tankMotorRight, tmRSpeed);
+                } else if (ms_nezhaV2.trackingSensor(Rjpin, PlanetX_Basic.TrackingStateType.Tracking_State_2)) {
+                    ms_nezhaV2.runMotor(tankMotorLeft, tmLSpeed);
+                    ms_nezhaV2.runMotor(tankMotorRight, 0);
+                } else if (ms_nezhaV2.trackingSensor(Rjpin, PlanetX_Basic.TrackingStateType.Tracking_State_1)) {
+                    ms_nezhaV2.runMotor(tankMotorLeft, 0);
+                    ms_nezhaV2.runMotor(tankMotorRight, tmRSpeed);
+                } else if (robotTankModeMovementChange) {
+                    break;
+                }
+                basic.pause(100)
             }
-            basic.pause(100)
-        }
+        })
     }
 
     // IOT  
