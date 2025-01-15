@@ -270,18 +270,6 @@ namespace ms_nezhaV2 {
                     ms_nezhaV2.runMotor(tankMotorLeft, 0);
                     ms_nezhaV2.runMotor(tankMotorRight, tmRSpeed);
                 }
-                else{
-                    switch(lastState){
-                        case 1:
-                            ms_nezhaV2.runMotor(tankMotorLeft, 0);
-                            ms_nezhaV2.runMotor(tankMotorRight, tmRSpeed);
-                            break;
-                        case 2:
-                            ms_nezhaV2.runMotor(tankMotorLeft, 0);
-                            ms_nezhaV2.runMotor(tankMotorRight, tmRSpeed);
-                            break;
-                    }
-                }
 
                 basic.pause(100)
             }
