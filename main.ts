@@ -241,15 +241,16 @@ namespace ms_nezhaV2 {
     //% color=#00B1ED
     export function tankDriveFollowLine(speed: number, Rjpin: PlanetX_Basic.DigitalRJPin) {
         robotTankModeMovementChange = false;
-        ms_nezhaV2.driveTank(LinearDirection.Forward, speed)
+        ms_nezhaV2.runMotor(tankMotorLeft, speed);
+        ms_nezhaV2.runMotor(tankMotorRight, speed);
         while (true) {
-            if (ms_nezhaV2.trackingSensor(PlanetX_Basic.DigitalRJPin.J1, PlanetX_Basic.TrackingStateType.Tracking_State_0)) {
+            if (ms_nezhaV2.trackingSensor(Rjpin, PlanetX_Basic.TrackingStateType.Tracking_State_0)) {
                 ms_nezhaV2.runMotor(tankMotorLeft, speed);
                 ms_nezhaV2.runMotor(tankMotorRight, speed);
-            } else if (ms_nezhaV2.trackingSensor(PlanetX_Basic.DigitalRJPin.J1, PlanetX_Basic.TrackingStateType.Tracking_State_2)) {
+            } else if (ms_nezhaV2.trackingSensor(Rjpin, PlanetX_Basic.TrackingStateType.Tracking_State_2)) {
                 ms_nezhaV2.runMotor(tankMotorLeft, speed);
                 ms_nezhaV2.runMotor(tankMotorRight, 0);
-            } else if (ms_nezhaV2.trackingSensor(PlanetX_Basic.DigitalRJPin.J1, PlanetX_Basic.TrackingStateType.Tracking_State_1)) {
+            } else if (ms_nezhaV2.trackingSensor(Rjpin, PlanetX_Basic.TrackingStateType.Tracking_State_1)) {
                 ms_nezhaV2.runMotor(tankMotorLeft, 0);
                 ms_nezhaV2.runMotor(tankMotorRight, speed);
             } else if (robotTankModeMovementChange) {
