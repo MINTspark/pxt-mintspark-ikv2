@@ -234,12 +234,15 @@ namespace ms_nezhaV2 {
 
     // Tank Drive
 
+    let lastState = -1;
+
     //% subcategory="Robot Tank Drive"
     //% group="Line Sensor"
     //% speed.min=1 speed.max=100 speed.defl=30
     //% block="Follow line with speed %speed sensor %Rjpin"
     //% color=#00B1ED
     export function tankDriveFollowLine(speed: number, Rjpin: PlanetX_Basic.DigitalRJPin) {
+        lastState = -1;
         robotTankModeMovementChange = false;
         speed = Math.abs(speed);
         let tmLSpeed = tankMotorLeftReversed ? -speed : speed;
@@ -251,18 +254,35 @@ namespace ms_nezhaV2 {
             ms_nezhaV2.runMotor(tankMotorRight, tmRSpeed);
 
             while (true) {
-                if (ms_nezhaV2.trackingSensor(Rjpin, PlanetX_Basic.TrackingStateType.Tracking_State_0)) {
-                    ms_nezhaV2.runMotor(tankMotorLeft, tmLSpeed);
-                    ms_nezhaV2.runMotor(tankMotorRight, tmRSpeed);
-                } else if (ms_nezhaV2.trackingSensor(Rjpin, PlanetX_Basic.TrackingStateType.Tracking_State_2)) {
-                    ms_nezhaV2.runMotor(tankMotorLeft, tmLSpeed);
-                    ms_nezhaV2.runMotor(tankMotorRight, 0);
-                } else if (ms_nezhaV2.trackingSensor(Rjpin, PlanetX_Basic.TrackingStateType.Tracking_State_1)) {
-                    ms_nezhaV2.runMotor(tankMotorLeft, 0);
-                    ms_nezhaV2.runMotor(tankMotorRight, tmRSpeed);
-                } else if (robotTankModeMovementChange) {
+                if (robotTankModeMovementChange) {
                     break;
                 }
+                else if (trackingSensor(Rjpin, PlanetX_Basic.TrackingStateType.Tracking_State_0)) {
+                    lastState = 0;
+                    ms_nezhaV2.runMotor(tankMotorLeft, tmLSpeed);
+                    ms_nezhaV2.runMotor(tankMotorRight, tmRSpeed);
+                } else if (trackingSensor(Rjpin, PlanetX_Basic.TrackingStateType.Tracking_State_2)) {
+                    lastState = 2;
+                    ms_nezhaV2.runMotor(tankMotorLeft, tmLSpeed);
+                    ms_nezhaV2.runMotor(tankMotorRight, 0);
+                } else if (trackingSensor(Rjpin, PlanetX_Basic.TrackingStateType.Tracking_State_1)) {
+                    lastState = 1;
+                    ms_nezhaV2.runMotor(tankMotorLeft, 0);
+                    ms_nezhaV2.runMotor(tankMotorRight, tmRSpeed);
+                }
+                else{
+                    switch(lastState){
+                        case 1:
+                            ms_nezhaV2.runMotor(tankMotorLeft, 0);
+                            ms_nezhaV2.runMotor(tankMotorRight, tmRSpeed);
+                            break;
+                        case 2:
+                            ms_nezhaV2.runMotor(tankMotorLeft, 0);
+                            ms_nezhaV2.runMotor(tankMotorRight, tmRSpeed);
+                            break;
+                    }
+                }
+
                 basic.pause(100)
             }
         })
