@@ -241,8 +241,7 @@ namespace ms_nezhaV2 {
     //% color=#00B1ED
     export function tankDriveFollowLine(speed: number, Rjpin: PlanetX_Basic.DigitalRJPin) {
         robotTankModeMovementChange = false;
-        ms_nezhaV2.runMotor(tankMotorLeft, speed);
-        ms_nezhaV2.runMotor(tankMotorRight, speed);
+        ms_nezhaV2.driveTankDualSpeedForSeconds(speed, speed)
         while (true) {
             if (ms_nezhaV2.trackingSensor(Rjpin, PlanetX_Basic.TrackingStateType.Tracking_State_0)) {
                 ms_nezhaV2.runMotor(tankMotorLeft, speed);
