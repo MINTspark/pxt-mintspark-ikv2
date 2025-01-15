@@ -236,7 +236,7 @@ namespace ms_nezhaV2 {
 
     //% subcategory="Robot Tank Drive"
     //% group="Line Sensor"
-    //% speed.min=1 speed.max=100 line.defl=30
+    //% speed.min=1 speed.max=100 speed.defl=30
     //% block="Follow line with speed %speed sensor %Rjpin"
     //% color=#00B1ED
     export function tankDriveFollowLine(speed: number, Rjpin: PlanetX_Basic.DigitalRJPin) {
@@ -244,11 +244,14 @@ namespace ms_nezhaV2 {
         ms_nezhaV2.driveTank(LinearDirection.Forward, speed)
         while (true) {
             if (ms_nezhaV2.trackingSensor(PlanetX_Basic.DigitalRJPin.J1, PlanetX_Basic.TrackingStateType.Tracking_State_0)) {
-                ms_nezhaV2.driveTankDualSpeedForSeconds(speed, speed)
+                ms_nezhaV2.runMotor(tankMotorLeft, speed);
+                ms_nezhaV2.runMotor(tankMotorRight, speed);
             } else if (ms_nezhaV2.trackingSensor(PlanetX_Basic.DigitalRJPin.J1, PlanetX_Basic.TrackingStateType.Tracking_State_2)) {
-                ms_nezhaV2.turnTank(TurnDirection.Right, 30)
+                ms_nezhaV2.runMotor(tankMotorLeft, speed);
+                ms_nezhaV2.runMotor(tankMotorRight, 0);
             } else if (ms_nezhaV2.trackingSensor(PlanetX_Basic.DigitalRJPin.J1, PlanetX_Basic.TrackingStateType.Tracking_State_1)) {
-                ms_nezhaV2.turnTank(TurnDirection.Left, 30)
+                ms_nezhaV2.runMotor(tankMotorLeft, 0);
+                ms_nezhaV2.runMotor(tankMotorRight, speed);
             } else if (robotTankModeMovementChange) {
                 break;
             }

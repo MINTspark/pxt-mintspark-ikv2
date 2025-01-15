@@ -20,5 +20,6 @@
     "{id:group}Input": "Eingabe",
     "{id:group}Sensor": "Sensor",
     "{id:group}Light": "Licht",
-    "{id:group}Display": "Display"
+    "{id:group}Display": "Display",
+    "{id:group}Line Sensor": "Linien Sensor"
 }
