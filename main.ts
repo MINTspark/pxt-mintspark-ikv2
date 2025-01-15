@@ -240,7 +240,20 @@ namespace ms_nezhaV2 {
     //% block="Follow line with speed %speed sensor %Rjpin"
     //% color=#00B1ED
     export function tankDriveFollowLine(speed: number, Rjpin: PlanetX_Basic.DigitalRJPin) {
-        
+        robotTankModeMovementChange = false;
+        ms_nezhaV2.driveTank(LinearDirection.Forward, speed)
+        while (true) {
+            if (ms_nezhaV2.trackingSensor(PlanetX_Basic.DigitalRJPin.J1, PlanetX_Basic.TrackingStateType.Tracking_State_0)) {
+                ms_nezhaV2.driveTankDualSpeedForSeconds(speed, speed)
+            } else if (ms_nezhaV2.trackingSensor(PlanetX_Basic.DigitalRJPin.J1, PlanetX_Basic.TrackingStateType.Tracking_State_2)) {
+                ms_nezhaV2.turnTank(TurnDirection.Right, 30)
+            } else if (ms_nezhaV2.trackingSensor(PlanetX_Basic.DigitalRJPin.J1, PlanetX_Basic.TrackingStateType.Tracking_State_1)) {
+                ms_nezhaV2.turnTank(TurnDirection.Left, 30)
+            } else if (robotTankModeMovementChange) {
+                break;
+            }
+            basic.pause(100)
+        }
     }
 
     // IOT  
