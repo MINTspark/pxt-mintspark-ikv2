@@ -111,7 +111,6 @@ namespace ms_nezhaV2 {
 
         if ((receiveBuffer[6] != 0xD5) || (!checkDcs(24 - 4))) {
 
-            basic.showIcon(IconNames.Heart)
         }
         for (let i = 0; i < uId.length; i++) {
             uId[i] = receiveBuffer[14 + i];
@@ -222,7 +221,6 @@ namespace ms_nezhaV2 {
             return;
         }
 
-        basic.showIcon(IconNames.Happy)
         let cmdWrite: number[] = [0x00, 0x00, 0xff, 0x15, 0xEB, 0xD4, 0x40, 0x01, 0xA0,
             0x06, 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
             0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F, 0xCD,
