@@ -29,7 +29,7 @@ namespace ms_nezhaV2 {
     //% subcategory="RFID"
     //% block="Read data block at position %blockToRead"
     //% color=#EA5532
-    //% blockToRead.defl=1
+    //% blockToRead.min=1 blockToRead.max=100 blockToRead.defl=1
     //% weight=15
     export function readDataBlock(blockToRead: number): string {
         if (!initialiseCard(blockToRead)) {
@@ -67,6 +67,7 @@ namespace ms_nezhaV2 {
     //% subcategory="RFID"
     //% block="Write data %data to position %blockToRead"
     //% color=#EA5532
+    //% blockToWrite.min=1 blockToWrite.max=100 blockToWrite.defl=1
     //% weight=13
     export function writeData(data: string, blockToWrite: number): void {
         if (!initialiseCard(blockToWrite)) {
