@@ -84,7 +84,14 @@ namespace ms_nezhaV2 {
         writeblock(blockData, blockToWrite);
     }
 
-    function checkCard(): boolean {
+    /**
+    * Check if RFID card is present
+    */
+    //% subcategory="RFID"
+    //% block="RFID Sensor detected card"
+    //% color=#EA5532
+    //% weight=17
+    export function checkCard(): boolean {
         if (rfid_enabled === 0) {
             wakeup();
         }
