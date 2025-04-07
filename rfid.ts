@@ -110,7 +110,7 @@ namespace ms_nezhaV2 {
         uIdLength = receiveBuffer[13];
 
         if ((receiveBuffer[6] != 0xD5) || (!checkDcs(24 - 4))) {
-
+            return false;
         }
         for (let i = 0; i < uId.length; i++) {
             uId[i] = receiveBuffer[14 + i];
