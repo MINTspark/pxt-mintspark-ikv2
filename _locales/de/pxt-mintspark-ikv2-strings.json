@@ -11,6 +11,7 @@
     "ms_nezhaV2.waitUntilColorSensorDetectsColor|block": "Warte bis Farbsensor sieht %color",
     "ms_nezhaV2.Crash|block": "Crash Sensor %Rjpin ist gedrückt",
     "ms_nezhaV2.onCrashSensorPressed|block": "Crash Sensor %Rjpin gedrückt",
+    "ms_nezhaV2.waitUntilCrashSensorPressed|block": "Warte bis Crash Sensor %Rjpin gedrückt",  
     "ms_nezhaV2.ledBrightness|block": "Schalte LED %Rjpin auf $ledstate || Helligkeit %brightness \\%",
     "ms_nezhaV2.oledShowText|block": "Display: Zeige Text %text auf Zeile %line",
     "ms_nezhaV2.oledShowNumber|block": "Display: Zeige Nummer %n auf Zeile %line",

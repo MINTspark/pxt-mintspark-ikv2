@@ -64,6 +64,19 @@ namespace ms_nezhaV2 {
         })
     }
 
+    //% weight=94
+    //% subcategory="Sensor / Input"
+    //% group="Input"
+    //% block="Wait until Crash Sensor %Rjpin pressed"
+    //% Rjpin.fieldEditor="gridpicker"
+    //% Rjpin.fieldOptions.columns=2
+    //% color=#EA5532
+    export function waitUntilCrashSensorPressed(Rjpin: PlanetX_Display.DigitalRJPin) {
+        while (!PlanetX_Basic.Crash(Rjpin)) {
+            basic.pause(200);
+        }
+    }
+
     let lastUltrasoundSensorReading = 50;
 
     //% weight=80
