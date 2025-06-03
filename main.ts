@@ -350,13 +350,13 @@ namespace ms_nezhaV2 {
     /**
     * Check if ESP8266 successfully connected to Wifi
     */
-    //% block="Wifi connected %State"
+    //% block="Wifi connected"
     //% color=#EA5532
     //% subcategory="IOT"
     //% group="Setup"
     //% color=#EA5532
     //% weight=90
-    export function wifiState(state: boolean): boolean{
-        return PlanetX_IOT.wifiState(state);
+    export function wifiState(): boolean{
+        return PlanetX_IOT.wifiState(true);
     }
 }
