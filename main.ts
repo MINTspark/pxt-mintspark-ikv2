@@ -113,6 +113,26 @@ namespace ms_nezhaV2 {
             }
         })
     }
+
+    //% weight=76
+    //% subcategory="Sensor / Input"
+    //% group="Sensor"
+    //% block="Wait until Ultrasonic Sensor %Rjpin triggered distance %triggerDistance %distanceUnit"
+    //% Rjpin.fieldEditor="gridpicker"
+    //% Rjpin.fieldOptions.columns=2
+    //% triggerDistance.defl=10
+    //% color=#EA5532
+    export function waitUntilUltrasonicSensorTriggered(Rjpin: PlanetX_Display.DigitalRJPin, triggerDistance: number, distanceUnit: PlanetX_Basic.Distance_Unit_List) {
+        while (true) {
+            let distance = PlanetX_Basic.ultrasoundSensor(Rjpin, distanceUnit);
+
+            if (distance > 0 && distance <= triggerDistance) {
+                break;
+            }
+
+            basic.pause(200);
+        }
+    }
     
     //% weight=75
     //% subcategory="Sensor / Input"
