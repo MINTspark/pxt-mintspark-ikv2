@@ -117,7 +117,7 @@ namespace ms_nezhaV2 {
     //% weight=76
     //% subcategory="Sensor / Input"
     //% group="Sensor"
-    //% block="Wait until Ultrasonic Sensor %Rjpin triggered distance %triggerDistance %distanceUnit"
+    //% block="Wait until Ultrasonic Sensor %Rjpin < distance %triggerDistance %distanceUnit"
     //% Rjpin.fieldEditor="gridpicker"
     //% Rjpin.fieldOptions.columns=2
     //% triggerDistance.defl=10
@@ -185,6 +185,18 @@ namespace ms_nezhaV2 {
                 basic.pause(200);
             }
         })
+    }
+
+    //% weight=44
+    //% subcategory="Sensor / Input"
+    //% group="Sensor"
+    //% block="Wait until Color sensor detects %color"
+    //% color.fieldEditor="gridpicker" color.fieldOptions.columns=3
+    //% color=#00B1ED
+    export function waitUntilColorSensorDetectsColor(color: PlanetX_Basic.ColorList) {
+        while (!PlanetX_Basic.checkColor(color)) {
+            basic.pause(200);
+        }
     }
 
     //% weight=40
