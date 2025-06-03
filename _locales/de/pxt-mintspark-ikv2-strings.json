@@ -19,8 +19,6 @@
     "ms_nezhaV2.tankDriveFollowLine|block": "Linie folgen mit Geschwindigkeit %speed Sensor %Rjpin",
     "ms_nezhaV2.initWIFI|block": "Starte Wifi Modul auf %Rjpin Baudrate %baudrate",
     "ms_nezhaV2.connectWifi|block": "Verbinde Wifi SSID = %ssid|KEY = %pw",
-    "ms_nezhaV2.connectWifi|ssid.defl": "Dein_SSID",
-    "ms_nezhaV2.connectWifi|pw.defl": "Dein_Passwort",
     "ms_nezhaV2.wifiState|block": "Wifi verbunden",
     "{id:subcategory}Sensor / Input": "Sensor / Eingabe",
     "{id:subcategory}Light / Display": "Licht / Display",
