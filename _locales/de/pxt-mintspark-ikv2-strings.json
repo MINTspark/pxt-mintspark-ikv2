@@ -3,6 +3,7 @@
     "ms_nezhaV2.onUltrasonicSensorTriggered|block": "Ultraschallsensor %Rjpin ausgelöst",
     "ms_nezhaV2.waitUntilUltrasonicSensorTriggered|block": "Warte bis Ultraschallsensor %Rjpin < Distanz %triggerDistance %distanceUnit",
     "ms_nezhaV2.trackingSensor|block": "Linenverfolgungs-Sensor %Rjpin sieht %state",
+    "ms_nezhaV2.waitUntilTrackingSensorDetectsState|block": "Warte bis Linenverfolgungs-Sensor %Rjpin sieht %state",
     "ms_nezhaV2.trimpot|block": "Trimpot %Rjpin analog Wert",
     "ms_nezhaV2.soilHumidity|block": "Bodenfeuchte-Sensor %Rjpin Wert(0~100)",
     "ms_nezhaV2.readColor|block": "Farbsensor Farbwert (0~360)",

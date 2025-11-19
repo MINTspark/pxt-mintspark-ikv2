@@ -73,7 +73,7 @@ namespace ms_nezhaV2 {
     //% color=#EA5532
     export function waitUntilCrashSensorPressed(Rjpin: PlanetX_Display.DigitalRJPin) {
         while (!PlanetX_Basic.Crash(Rjpin)) {
-            basic.pause(200);
+            basic.pause(100);
         }
     }
 
@@ -143,7 +143,7 @@ namespace ms_nezhaV2 {
                 break;
             }
 
-            basic.pause(200);
+            basic.pause(100);
         }
     }
     
@@ -156,6 +156,43 @@ namespace ms_nezhaV2 {
     //% block="Line-tracking sensor %Rjpin is %state"
     export function trackingSensor(Rjpin: PlanetX_Basic.DigitalRJPin, state: PlanetX_Basic.TrackingStateType): boolean {
         return PlanetX_Basic.trackingSensor(Rjpin, state);
+    }
+
+    //% weight=74
+    //% subcategory="Sensor / Input"
+    //% group="Sensor"
+    //% Rjpin.fieldEditor="gridpicker"
+    //% Rjpin.fieldOptions.columns=2
+    //% color=#EA5532
+    //% block="Wait until Line-tracking sensor %Rjpin is %state"
+    export function waitUntilTrackingSensorDetectsState(Rjpin: PlanetX_Basic.DigitalRJPin, state: PlanetX_Basic.TrackingStateType) {
+        while (!PlanetX_Basic.trackingSensor(Rjpin, state)) {
+            basic.pause(100);
+        }
+    }
+
+    const trackingSensorEventId = 54122;
+    //% weight=73
+    //% subcategory="Sensor / Input"
+    //% group="Sensor"
+    //% block="Line-tracking sensor %Rjpin detects %state"
+    //% color=#EA5532
+    //% Rjpin.fieldEditor="gridpicker"
+    //% Rjpin.fieldOptions.columns=2
+    export function onTrackingSensorDetectsState(Rjpin: PlanetX_Basic.DigitalRJPin, state: PlanetX_Basic.TrackingStateType, handler: () => void) {
+        control.onEvent(trackingSensorEventId, 0, handler);
+        control.inBackground(() => {
+            let lastIsMatch = PlanetX_Basic.trackingSensor(Rjpin, state);
+            while (true) {
+                let isMatch = PlanetX_Basic.trackingSensor(Rjpin, state);
+
+                if (isMatch && !lastIsMatch) {
+                    control.raiseEvent(trackingSensorEventId, 0);
+                }
+                lastIsMatch = isMatch;
+                basic.pause(200);
+            }
+        })
     }
 
     //% weight=55
