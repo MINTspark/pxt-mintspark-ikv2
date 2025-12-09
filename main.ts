@@ -195,6 +195,18 @@ namespace ms_nezhaV2 {
         })
     }
 
+    //% weight=65
+    //% subcategory="Sensor / Input"
+    //% group="Sensor"
+    //% state.fieldEditor="gridpicker"
+    //% state.fieldOptions.columns=4
+    //% color=#00B1ED
+    //% block="Trackbit is %state"
+    export function trackbitState(state: PlanetX_Basic.TrackbitStateType): boolean {
+        PlanetX_Basic.Trackbit_get_state_value();
+        return PlanetX_Basic.TrackbitState(state);
+    }
+
     //% weight=55
     //% subcategory="Sensor / Input"
     //% group="Sensor"
@@ -249,7 +261,7 @@ namespace ms_nezhaV2 {
         }
     }
 
-    //% weight=40
+    //% weight=109
     //% subcategory="Sensor / Input"
     //% group="Sensor"
     //% block="UV sensor %Rjpin level(0~15)"
@@ -260,7 +272,7 @@ namespace ms_nezhaV2 {
         return PlanetX_Basic.UVLevel(Rjpin);
     }
 
-    //% weight=35
+    //% weight=106
     //% subcategory="Sensor / Input"
     //% group="Sensor"
     //% block="DHT11 sensor %Rjpin %dht11state value"
