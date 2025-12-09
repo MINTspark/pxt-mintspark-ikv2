@@ -6,7 +6,7 @@ namespace ms_nezhaV2 {
      * PlanetX Sensors
      */
 
-    //% weight=110
+    //% weight=25
     //% subcategory="Sensor / Input"
     //% group="Sensor"
     //% block="Soil moisture sensor %Rjpin value(0~100)"
@@ -17,7 +17,7 @@ namespace ms_nezhaV2 {
         return PlanetX_Basic.soilHumidity(Rjpin);
     }
 
-    //% weight=105
+    //% weight=55
     //% subcategory="Sensor / Input"
     //% group="Input"
     //% block="Trimpot %Rjpin analog value"
@@ -261,7 +261,7 @@ namespace ms_nezhaV2 {
         }
     }
 
-    //% weight=109
+    //% weight=30
     //% subcategory="Sensor / Input"
     //% group="Sensor"
     //% block="UV sensor %Rjpin level(0~15)"
@@ -272,7 +272,7 @@ namespace ms_nezhaV2 {
         return PlanetX_Basic.UVLevel(Rjpin);
     }
 
-    //% weight=106
+    //% weight=108
     //% subcategory="Sensor / Input"
     //% group="Sensor"
     //% block="DHT11 sensor %Rjpin %dht11state value"
