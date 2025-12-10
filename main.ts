@@ -195,6 +195,15 @@ namespace ms_nezhaV2 {
         })
     }
 
+    //% weight=66
+    //% subcategory="Sensor / Input"
+    //% group="Sensor"
+    //% color=#00B1ED
+    //% block="Trackbit Update"
+    export function trackbitGetState() {
+        PlanetX_Basic.Trackbit_get_state_value();
+    }
+
     //% weight=65
     //% subcategory="Sensor / Input"
     //% group="Sensor"
@@ -203,7 +212,6 @@ namespace ms_nezhaV2 {
     //% color=#00B1ED
     //% block="Trackbit is %state"
     export function trackbitState(state: PlanetX_Basic.TrackbitStateType): boolean {
-        PlanetX_Basic.Trackbit_get_state_value();
         return PlanetX_Basic.TrackbitState(state);
     }
 
