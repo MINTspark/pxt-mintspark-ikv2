@@ -378,6 +378,56 @@ namespace ms_nezhaV2 {
         })
     }
 
+
+    //% subcategory="Robot Tank Drive"
+    //% group="Line Sensor"
+    //% block="Trackbit follow line"
+    //% color=#00B1ED
+    export function trackBitFollowLine() {
+        robotTankModeMovementChange = false;
+        let baseSpeed = 20
+        let tmLMultiplier = tankMotorLeftReversed ? -1 : 1;
+        let tmRMultiplier = tankMotorRightReversed ? -1 : 1;
+        ms_nezhaV2.runMotor(tankMotorLeft, baseSpeed * tmLMultiplier);
+        ms_nezhaV2.runMotor(tankMotorRight, baseSpeed * tmRMultiplier);
+
+        // Follow line in background
+        control.inBackground(() => {
+            let mRSpeed = 0
+            let mLSpeed = 0
+            let lastError = 0
+            let motorSpeed = 0
+            let error = 0
+            let maxSpeed = 40
+            let Kp = 0.07
+            let Kd = 0.09
+            let hasLine = false
+
+            while (true) {
+                if (robotTankModeMovementChange) {
+                    break;
+                }     
+
+                error = PlanetX_Basic.TrackBit_get_offset()
+
+                if (hasLine)
+                {
+                    motorSpeed = Kp * error + Kd * (error - lastError)
+                    lastError = error
+                    mLSpeed = Math.constrain(baseSpeed + motorSpeed, 0, maxSpeed)
+                    mRSpeed = Math.constrain(baseSpeed - motorSpeed, 0, maxSpeed)
+                    ms_nezhaV2.runMotor(tankMotorLeft, mLSpeed * tmLMultiplier);
+                    ms_nezhaV2.runMotor(tankMotorRight, mRSpeed * tmRMultiplier);
+                    basic.pause(20)
+                }
+                else if (Math.abs(error) < 500)
+                {
+                    hasLine = true            
+                }
+            }  
+        })
+    }
+
     // IOT  
     /**
     * Initialize wifi module
